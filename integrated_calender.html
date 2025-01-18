@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calendar App</h1>
+    <label for="year">Year:</label>
+    <input type="number" id="year" placeholder="Enter year" min="1">
+    <br>
+    <label for="month">Month:</label>
+    <input type="number" id="month" placeholder="Enter month" min="1" max="12">
+    <br>
+    <label for="day">Day:</label>
+    <input type="number" id="day" placeholder="Enter day" min="1" max="31">
+    <br>
+    <button onclick="calculateDay()">Calculate Day</button>
+    <div id="result"></div>
+
+    <script>
+        function calculateDay() {
+            const year = parseInt(document.getElementById('year').value);
+            const month = parseInt(document.getElementById('month').value);
+            const day = parseInt(document.getElementById('day').value);
+
+            const resultElement = document.getElementById('result');
+
+            if (isNaN(year) || isNaN(month) || isNaN(day)) {
+                resultElement.innerHTML = 'Please enter valid values for year, month, and day.';
+                return;
+            }
+
+            // Call the backend or instantiate the Calendar class
+            // Replace the following line with an API call if needed
+            const dayInfo = getDayInfo(year, month, day);
+
+            resultElement.innerHTML = dayInfo;
+        }
+
+        // Mock backend function, replace with API call
+        function getDayInfo(year, month, day) {
+            // Assuming the backend Calendar class is used
+            const calendar = new Calendar();
+
+            if (year !== 2024) {
+                return 'Enter present year (2024)';
+            }
+
+            const dayOfWeek = calendar.get_day(year, month, day);
+            const holidayReason = calendar.get_holiday_reason(year, month, day);
+            const availableSlots = !holidayReason ? calendar.get_available_slots(dayOfWeek) : [];
+
+            let result = `Day of the week: ${dayOfWeek}`;
+            if (holidayReason) {
+                result += `<br>Holiday: ${holidayReason}`;
+            } else if (availableSlots.length > 0) {
+                result += "<br>Available time slots:<br>" + availableSlots.join("<br>");
+            } else {
+                result += "<br>No available time slots on this day.";
+            }
+
+            return result;
+        }
+        
+        class Calendar {
+            constructor() {
+                // Initialize available time slots for each day
+                this.available_slots = {
+                    'Monday': ['9 AM - 10 AM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Tuesday': ['10 AM - 12 PM', '3 PM - 5 PM', '8 PM - 10 PM'],
+                    'Wednesday': ['9 AM - 11 AM', '1 PM - 3 PM', '6 PM - 8 PM'],
+                    'Thursday': ['11 AM - 1 PM', '4 PM - 6 PM', '9 PM - 10 PM'],
+                    'Friday': ['10 AM - 12 PM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Saturday': ['9 AM - 11 AM', '1 PM - 3 PM', '5 PM - 7 PM'],
+                    'Sunday': ['3 PM - 5 PM', '6 PM - 8 PM', '9 PM - 10 PM']
+                };
+                // Initialize holidays with reasons
+                this.holidays = {
+                    2024: {
+                        1: { 26: "Republic Day" },
+                        8: { 15: "Independence Day" }
+                        // Add more holidays as needed, using the format (year, month, day): "Holiday Reason"
+                    }
+                };
+            }
+
+            get_day(y, m, d) {
+                // Create a Date object with the provided year, month, and day
+                const inputDate = new Date(y, m - 1, d); // Note: Month is 0-based in JavaScript
+
+                // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+                const dayOfWeek = inputDate.getDay();
+
+                // Define an array of days of the week
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+                // Return the corresponding day of the week
+                return daysOfWeek[dayOfWeek];
+            }
+
+            get_available_slots(day) {
+                return this.available_slots[day] || [];
+            }
+
+            get_holiday_reason(y, m, d) {
+                // Check if the date is a holiday
+                return this.holidays[y]?.[m]?.[d];
+            }
+        }
+    </script>
+</body>
+</html>

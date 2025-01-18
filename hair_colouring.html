@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hair Services</title>
+    <style>
+        /* Add your styles here */
+        .service-details {
+            margin-bottom: 50px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 1100px; /* Adjust the width as needed */
+            height:150px;
+           
+        }
+
+        .service-details img {
+            width: 200px;
+            height: 140px;
+            margin-left: 800px; /* Add margin to the left side of the image */
+            border-radius: 5px;
+        }
+
+        .service-details p {
+            text-align: left; /* Align text to the left */
+            margin-top: -100px; /* Remove top margin for the paragraph */
+        }
+
+        .service-details ul {
+            margin-top: -10px; /* Adjust top margin for the unordered list */
+            padding-left: 0; /* Remove default padding for the unordered list */
+        }
+
+        .service-details li {
+            margin-top: 0;
+            list-style-type: none; /* Remove list bullets */
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+            width: 73%;
+        }
+
+        /* Styles for the calendar modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Services</h2>
+    <!-- Men's Hair Coloring Section -->
+    <div class="service-details" id="mens-hair-coloring">
+        <img src="images/mens_hair_coloring.jpg" alt="Men's Hair Coloring">
+        <p><strong>Men's Hair Coloring</strong></p>
+        <ul>
+            <li><strong>Starting Price:</strong> ₹300</li>
+            <li><strong>Cost May Vary:</strong> Based on the hair length, coloring style, and additional requirements.</li>
+            <li><strong>Description:</strong> Professional hair coloring services to match your desired look and style.</li>
+        </ul>
+        <button onclick="addToCart('Men\'s Hair Coloring', 300, 4.9)">Add to Cart</button>
+        <button onclick="openCalendarModal()">Book Service</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <button onclick="displayTotalCost()">View Total Cost</button>
+        <div id="totalCost"></div>
+        
+    </div>
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalendarModal()">&times;</span>
+            <h2>Book Service</h2>
+            <label for="selectedDate">Select Date:</label>
+            <input type="date" id="selectedDate" onchange="populateTimeSlots()">
+            <br>
+            <label for="selectedTimeSlot">Select Time Slot:</label>
+            <select id="selectedTimeSlot"></select>
+            <br>
+            <button onclick="bookService()">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePaymentModal()">&times;</span>
+            <h2>Payment</h2>
+            <p>Total Cost: <span id="totalCostPayment"></span></p>
+
+            <!-- Payment Form -->
+            <form id="paymentForm" onsubmit="handlePayment(event)">
+                <label for="paymentMethod">Select Payment Method:</label>
+                <select id="paymentMethod" onchange="togglePaymentDetails()">
+                    <option value="creditCard">Credit/Debit Card</option>
+                    <option value="netBanking">Net Banking</option>
+                    <option value="upi">UPI</option>
+                    <!-- Add more payment methods as needed -->
+                </select>
+                
+                <!-- Payment details based on selected method -->
+                <div id="creditCardDetails" class="paymentDetails">
+                    <!-- Credit card details fields -->
+                    <!-- Add fields for card number, expiry date, CVV, etc. -->
+                </div>
+                
+                <div id="netBankingDetails" class="paymentDetails">
+                    <!-- Net banking details fields -->
+                    <!-- Add fields for bank selection, account number, etc. -->
+                </div>
+                
+                <div id="upiDetails" class="paymentDetails">
+                    <!-- UPI details fields -->
+                    <!-- Add field for UPI ID -->
+                </div>
+                
+                <button type="submit">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        // Function to add item to cart
+        function addToCart(serviceName, cost, rating) {
+            cart.push({ service: serviceName, cost: cost, rating: rating });
+            alert(serviceName + ' added to cart with cost ₹' + cost + ' and rating ' + rating);
+            displayCartItems();
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            displayCartItems();
+        }
+
+        // Function to display items in the cart
+        function displayCartItems() {
+            const cartItemsList = document.getElementById('cartItems');
+            cartItemsList.innerHTML = '';
+
+            for (let i = 0; i < cart.length; i++) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${cart[i].service} - Cost: ₹${cart[i].cost} - Rating: ${cart[i].rating}`;
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function () {
+                    removeFromCart(i);
+                };
+                listItem.appendChild(removeButton);
+                cartItemsList.appendChild(listItem);
+            }
+        }
+
+        // Function to calculate total cost of items in the cart
+        function displayTotalCost() {
+            let totalCost = 0;
+            for (let item of cart) {
+                totalCost += item.cost;
+            }
+            document.getElementById('totalCost').textContent = 'Total Cost: ₹' + totalCost;
+        }
+
+        // Function to open the calendar modal
+        function openCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'block';
+        }
+
+        // Function to close the calendar modal
+        function closeCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'none';
+        }
+
+        function bookService() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
+        
+            if (selectedDate && selectedTimeSlot) {
+                alert('Service booked for ' + selectedDate + ' at ' + selectedTimeSlot);
+                closeCalendarModal(); // Close the calendar modal
+        
+                // Open the payment modal after booking
+                openPaymentModal(); 
+            } else {
+                alert('Please select a valid date and time slot.');
+            }
+        }
+        
+        // Function to open the payment modal
+        function openPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'block';
+            const totalCost = cart.reduce((acc, item) => acc + item.cost, 0);
+            document.getElementById('totalCostPayment').textContent = '$' + totalCost;
+        }
+
+        // Function to populate time slots based on the selected date
+        function populateTimeSlots() {
+            const timeSlotSelect = document.getElementById('selectedTimeSlot');
+            const selectedDate = document.getElementById('selectedDate').value;
+
+            // Example: Populate with dummy time slots based on selected date
+            if (selectedDate) {
+                timeSlotSelect.innerHTML = '';
+                const timeSlots = ['9:00 AM', '11:00 AM', '2:00 PM', '4:00 PM'];
+                timeSlots.forEach(slot => {
+                    const option = document.createElement('option');
+                    option.value = slot;
+                    option.textContent = slot;
+                    timeSlotSelect.appendChild(option);
+                });
+            }
+        }
+
+        
+        // Function to close the payment modal
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Function to handle payment form submission
+        function handlePayment(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get selected payment method
+            const paymentMethod = document.getElementById('paymentMethod').value;
+
+            // Process payment based on selected method
+            switch (paymentMethod) {
+                case 'creditCard':
+                    // Handle credit/debit card payment
+                    break;
+                case 'netBanking':
+                    // Handle net banking payment
+                    break;
+                case 'upi':
+                    // Redirect to PhonePe for UPI payment
+                    window.location.href = 'https://www.phonepe.com';
+                    break;
+            }
+
+            // Close the payment modal after payment is processed
+            closePaymentModal();
+        }
+
+        // Function to toggle payment details based on selected method
+        function togglePaymentDetails() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const paymentDetails = document.querySelectorAll('.paymentDetails');
+
+            paymentDetails.forEach(detail => {
+                detail.style.display = 'none'; // Hide all payment details fields
+            });
+
+            document.getElementById(paymentMethod + 'Details').style.display = 'block'; // Show selected payment details
+        }
+    </script>
+</body>
+
+</html>

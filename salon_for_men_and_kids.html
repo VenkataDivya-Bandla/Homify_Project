@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon for men and kids</title>
+    <style>
+        /* Add your styles here */
+        .service-details {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 1100px; /* Adjust the width as needed */
+        }
+
+        .service-details img {
+            width: 200px;
+            height: 140px;
+            border-radius: 5px;
+            float: left;
+            margin-right: 20px;
+        }
+
+        .service-details p {
+            text-align: left; /* Align text to the left */
+            margin-top: 0; /* Remove top margin for the paragraph */
+        }
+
+        .service-details ul {
+            margin-top: -10px; /* Adjust top margin for the unordered list */
+            padding-left: 0; /* Remove default padding for the unordered list */
+        }
+
+        .service-details li {
+            margin-top: 0;
+            list-style-type: none; /* Remove list bullets */
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        /* Styles for the calendar modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 5px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>salon royale</h2>
+    <div class="service-details" id="best-seller-packages">
+        <img src="images/best_seller_packages.jpg" alt="Best Seller Packages">
+        <p>Best Seller Packages</p>
+        <ul>
+            <li><strong>Cost:</strong> Prices Vary</li>
+            <li><strong>Description:</strong> Explore our best seller packages for a complete grooming experience.</li>
+        </ul>
+        <button onclick="addToCart('Best Seller Packages', 'Prices Vary')">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="pedicure">
+        <img src="images/pedicure.jpg" alt="Pedicure">
+        <p>Pedicure</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹299</li>
+            <li><strong>Duration:</strong> 45 mins</li>
+            <li><strong>Description:</strong> Professional pedicure service to keep your feet healthy and clean.</li>
+        </ul>
+        <button onclick="addToCart('Pedicure', 299)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="haircut">
+        <img src="images/mens_kids_haircuting.jpg" alt="Men's/Kids Haircutting">
+        <p>Men's/Kids Haircutting</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹199</li>
+            <li><strong>Duration:</strong> 30 mins</li>
+            <li><strong>Description:</strong> Professional haircutting service for men and kids.</li>
+        </ul>
+        <button onclick="addToCart('Men\'s/Kids Haircutting', 199)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="face-care">
+        <img src="images/face_care.jpg" alt="Face Care">
+        <p>Face Care</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹349</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Description:</strong> Relaxing and rejuvenating face care service for a glowing complexion.</li>
+        </ul>
+        <button onclick="addToCart('Face Care', 349)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="shave-grooming">
+        <img src="images/shave_beard_grooming.jpg" alt="Shave/Beard Grooming">
+        <p>Shave/Beard Grooming</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹249</li>
+            <li><strong>Duration:</strong> 30 mins</li>
+            <li><strong>Description:</strong> Professional shaving and beard grooming service for a clean and neat look.</li>
+        </ul>
+        <button onclick="addToCart('Shave/Beard Grooming', 249)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="hair-colour">
+        <img src="images/hair_colour.jpg" alt="Hair Colour">
+        <p>Hair Colour</p>
+        <ul>
+            <li><strong>Cost:</strong> Prices Vary</li>
+            <li><strong>Description:</strong> Professional hair coloring service to give your hair a new look.</li>
+        </ul>
+        <button onclick="addToCart('Hair Colour', 'Prices Vary')">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="massage">
+        <img src="images/massage.jpg" alt="Massage">
+        <p>Massage</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹499</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Description:</strong> Relaxing massage service to relieve stress and tension.</li>
+        </ul>
+        <button onclick="addToCart('Massage', 499)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    <h2>salon prime</h2>
+    <div class="service-details" id="bestsellers">
+        <img src="images/bestsellers.jpg" alt="Bestsellers">
+        <p>Bestsellers</p>
+        <ul>
+            <li><strong>Cost:</strong> Prices Vary</li>
+            <li><strong>Description:</strong> Explore our bestseller services for a complete grooming experience.</li>
+        </ul>
+        <button onclick="addToCart('Bestsellers', 'Prices Vary')">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="haircut-beard-styling">
+        <img src="images/haircut_beard_styling.jpg" alt="Haircut & Beard Styling">
+        <p>Haircut & Beard Styling</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹349</li>
+            <li><strong>Duration:</strong> 45 mins</li>
+            <li><strong>Description:</strong> Professional haircut and beard styling service for a fresh look.</li>
+        </ul>
+        <button onclick="addToCart('Haircut & Beard Styling', 349)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="massage">
+        <img src="images/massage.jpg" alt="Massage">
+        <p>Massage</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹499</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Description:</strong> Relaxing massage service to relieve stress and tension.</li>
+        </ul>
+        <button onclick="addToCart('Massage', 499)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="pedicure">
+        <img src="images/pedicure.jpg" alt="Pedicure">
+        <p>Pedicure</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹299</li>
+            <li><strong>Duration:</strong> 30 mins</li>
+            <li><strong>Description:</strong> Professional pedicure service to keep your feet healthy and clean.</li>
+        </ul>
+        <button onclick="addToCart('Pedicure', 299)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="detan">
+        <img src="images/detan.jpg" alt="Detan">
+        <p>Detan</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹249</li>
+            <li><strong>Duration:</strong> 30 mins</li>
+            <li><strong>Description:</strong> Detan service to remove tan and brighten the skin.</li>
+        </ul>
+        <button onclick="addToCart('Detan', 249)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="facial-cleanup">
+        <img src="images/facial_cleanup.jpg" alt="Facial & Cleanup">
+        <p>Facial & Cleanup</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹399</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Description:</strong> Facial and cleanup service for deep cleansing and rejuvenation.</li>
+        </ul>
+        <button onclick="addToCart('Facial & Cleanup', 399)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="hair-colour">
+        <img src="images/hair_colour.jpg" alt="Hair Colour">
+        <p>Hair Colour</p>
+        <ul>
+            <li><strong>Cost:</strong> Prices Vary</li>
+            <li><strong>Description:</strong> Professional hair coloring service to give your hair a new look.</li>
+        </ul>
+        <button onclick="addToCart('Hair Colour', 'Prices Vary')">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="ayurvedic-massage">
+        <img src="images/ayurvedic_massage.jpg" alt="Ayurvedic Massage">
+        <p>Ayurvedic Massage</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹599</li>
+            <li><strong>Duration:</strong> 90 mins</li>
+            <li><strong>Description:</strong> Traditional Ayurvedic massage for holistic wellness.</li>
+        </ul>
+        <button onclick="addToCart('Ayurvedic Massage', 599)">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div>
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <button onclick="displayTotalCost()">View Total Cost</button>
+        <div id="totalCost"></div>
+        <button onclick="openCalendarModal()">Book Services</button>
+    </div>
+    
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalendarModal()">&times;</span>
+            <h2>Book Service</h2>
+            <label for="selectedDate">Select Date:</label>
+            <input type="date" id="selectedDate" onchange="populateTimeSlots()">
+            <br>
+            <label for="selectedTimeSlot">Select Time Slot:</label>
+            <select id="selectedTimeSlot"></select>
+            <br>
+            <button onclick="bookService()">Book Now</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(serviceName, cost, rating) {
+            cart.push({ service: serviceName, cost: cost, rating: rating });
+            alert(serviceName + ' added to cart with cost ₹' + cost + ' and rating ' + rating);
+            displayCartItems();
+        }
+
+        function displayCartItems() {
+            const cartItemsList = document.getElementById('cartItems');
+            cartItemsList.innerHTML = ''; // Clear previous items
+
+            for (let item of cart) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.service} - Cost: $${item.cost} - Rating: ${item.rating}`;
+                cartItemsList.appendChild(listItem);
+            }
+        }
+
+        function displayTotalCost() {
+            let totalCost = 0;
+            for (let item of cart) {
+                totalCost += item.cost;
+            }
+            document.getElementById('totalCost').textContent = 'Total Cost: ₹' + totalCost;
+        }
+        
+        
+
+        function openCalendarModal(serviceName, cost, rating) {
+            // Open the calendar modal
+            document.getElementById('calendarModal').style.display = 'block';
+        }
+
+        function closeCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'none';
+        }
+
+        function populateTimeSlots() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            const dayInfo = getDayInfo(selectedDate);
+            const timeSlotSelect = document.getElementById('selectedTimeSlot');
+            timeSlotSelect.innerHTML = ''; // Clear existing options
+
+            if (dayInfo.availableSlots.length > 0) {
+                dayInfo.availableSlots.forEach(slot => {
+                    const option = document.createElement('option');
+                    option.textContent = slot;
+                    timeSlotSelect.appendChild(option);
+                });
+            } else {
+                const option = document.createElement('option');
+                option.textContent = 'No available time slots';
+                timeSlotSelect.appendChild(option);
+            }
+        }
+
+        function bookService() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
+
+            // Add your logic for booking the service
+            console.log('Service booked on:', selectedDate, 'at', selectedTimeSlot);
+
+            // Close the calendar modal
+            closeCalendarModal();
+        }
+        
+        // Mock backend function, replace with API call
+        function getDayInfo(selectedDate) {
+            // Assuming the backend Calendar class is used
+            const calendar = new Calendar();
+
+            const [year, month, day] = selectedDate.split('-').map(Number);
+
+            const dayOfWeek = calendar.get_day(year, month, day);
+            const holidayReason = calendar.get_holiday_reason(year, month, day);
+            const availableSlots = !holidayReason ? calendar.get_available_slots(dayOfWeek) : [];
+
+            return { dayOfWeek, holidayReason, availableSlots };
+        }
+
+        class Calendar {
+            constructor() {
+                // Initialize available time slots for each day
+                this.available_slots = {
+                    'Monday': ['9 AM - 10 AM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Tuesday': ['10 AM - 12 PM', '3 PM - 5 PM', '8 PM - 10 PM'],
+                    'Wednesday': ['9 AM - 11 AM', '1 PM - 3 PM', '6 PM - 8 PM'],
+                    'Thursday': ['11 AM - 1 PM', '4 PM - 6 PM', '9 PM - 10 PM'],
+                    'Friday': ['10 AM - 12 PM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Saturday': ['9 AM - 11 AM', '1 PM - 3 PM', '5 PM - 7 PM'],
+                    'Sunday': ['3 PM - 5 PM', '6 PM - 8 PM', '9 PM - 10 PM']
+                };
+                // Initialize holidays with reasons
+                this.holidays = {
+                    2024: {
+                        1: { 26: "Republic Day" },
+                    // Other holidays...
+                    }
+                };
+            }
+              
+            get_day(y, m, d) {
+                // Create a Date object with the provided year, month, and day
+                const inputDate = new Date(y, m - 1, d); // Note: Month is 0-based in JavaScript
+
+                // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+                const dayOfWeek = inputDate.getDay();
+
+                // Define an array of days of the week
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+                // Return the corresponding day of the week
+                return daysOfWeek[dayOfWeek];
+            }
+
+            get_available_slots(day) {
+                return this.available_slots[day] || [];
+            }
+
+            get_holiday_reason(y, m, d) {
+                // Check if the date is a holiday
+                return this.holidays[y]?.[m]?.[d];
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="INSPIRO" />
+    <meta name="description" content="We Care Home Services - Services Page">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HOMIFY HOME SERVICES | Services Page</title>
+    <link href="css/plugins.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+
+<body class="boxed-simple">
+
+    <!-- Navigation -->
+    <div class="spacer"></div>
+
+    <!-- Search container -->
+    <div class="search-container">
+        <button type="button" onclick="toggleServiceMenu()">Service List</button>
+        <input type="text" id="searchInput" placeholder="Enter your location..." onkeydown="if(event.keyCode==13){searchLocation();}">
+        <button class="btn" onclick="searchLocation()">Search</button>
+    </div>
+
+    <!-- Service menu -->
+    <ul id="serviceMenu" class="service-menu" style="display: none;">
+        <!-- Service categories and items -->
+        <li class="category">Appliance Repairing
+            <ul>
+                <li class="sub-service" onclick="navigateToService('ac_repair.html')">AC Repair</li>
+                <li class="sub-service" onclick="navigateToService('washing_machine_repair.html')">Washing Machine Repair</li>
+                <li class="sub-service" onclick="navigateToService('water_purifier_repair.html')">Water Purifier Repair</li>
+                <li class="sub-service" onclick="navigateToService('television_repair.html')">Television Repair</li>
+                <li class="sub-service" onclick="navigateToService('refrigerator_repair.html')">Refrigerator Repair</li>
+                <li class="sub-service" onclick="navigateToService('microwave_repair.html')">Microwave Repair</li>
+                <li class="sub-service" onclick="navigateToService('geyser.html')">Geyser Repair</li>
+            </ul>
+        </li>
+        <li class="category">Cleaning Services
+            <ul>
+                <li class="sub-service" onclick="navigateToService('kitchen.html')">Kitchen Cleaning</li>
+                <li class="sub-service" onclick="navigateToService('bathroom.html')">Bathroom Cleaning</li>
+                <li class="sub-service" onclick="navigateToService('full_house.html')">Full House Cleaning</li>
+                <li class="sub-service" onclick="navigateToService('sofa.html')">Sofa Cleaning</li>
+                <li class="sub-service" onclick="navigateToService('pest_control.html')">Pest Control</li>
+                <li class="sub-service" onclick="navigateToService('garden.html')">Garden Cleaning</li>
+                <li class="sub-service" onclick="navigateToService('car_wash.html')">Car Washing</li>
+            </ul>
+        </li>
+        <li class="category">Spa and Salon for Men
+            <ul>
+                <li class="sub-service" onclick="navigateToService('hair_cut.html')">Hair Cut</li>
+                <li class="sub-service" onclick="navigateToService('shaving.html')">Shaving</li>
+                <li class="sub-service" onclick="navigateToService('hair_colouring.html')">Hair Colouring</li>
+                <li class="sub-service" onclick="navigateToService('scalp_treatments.html')">Scalp Treatments</li>
+                <li class="sub-service" onclick="navigateToService('foot_reflexology.html')">Foot Reflexology</li>
+                <li class="sub-service" onclick="navigateToService('aromatherapy.html')">Aromatherapy</li>
+            </ul>
+        </li>
+        <li class="category">Spa and Salon for Women
+            <ul>
+                <li class="sub-service" onclick="navigateToService('salon_for_women.html')">Hair Cut</li>
+                <li class="sub-service" onclick="navigateToService('women_spa.html')">Eyebrow and Eyelash</li>
+                <li class="sub-service" onclick="navigateToService('hair_studio_for_women.html')">Hair Colouring</li>
+                <li class="sub-service" onclick="navigateToService('makeup_and_styling_studio.html')">Makeup and Styling</li>
+                <li class="sub-service" onclick="navigateToService('laser_hair_reduction.html')">Laser Hair Reduction</li>
+            </ul>
+        </li>
+        <li class="category">Cooking services
+            <ul>
+                <li class="sub-service" onclick="navigateToService('chef_for_occasion.html')">For Occasion</li>
+                <li class="sub-service" onclick="navigateToService('chef_for_one_meal.html')">For One Meal</li>
+                <li class="sub-service" onclick="navigateToService('cook_for_monthly_basis.html')">For Monthly Basis</li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        function toggleServiceMenu() {
+            var serviceMenu = document.getElementById('serviceMenu');
+            if (serviceMenu.style.display === 'none') {
+                serviceMenu.style.display = 'block';
+            } else {
+                serviceMenu.style.display = 'none';
+            }
+        }
+        function navigateToService(servicePage) {
+            window.location.href = servicePage;
+        }
+
+        // Function to search for services
+        function searchService() {
+            // Add your search functionality here
+        }
+
+        // Function to search for available locations
+        function searchLocation() {
+            var location = document.getElementById('searchInput').value.trim();
+            var isAvailable = checkLocation(location);
+            if (isAvailable) {
+                alert("Services available for your location.");
+            }
+            else {
+                alert("Services won't be provided for your current location.");
+            }
+        }
+
+        // Function to check if the location is available
+        function checkLocation(location) {
+            var availableLocations = [
+                {
+                    name: 'Telangana',
+                    areas: ['Hyderabad', 'Warangal', 'Karimnagar', 'Nizamabad', 'Khammam', 'Sangareddy']
+                },
+                {
+                    name: 'Andhra Pradesh',
+                    areas: ['Vijayawada', 'Visakhapatnam', 'Guntur', 'Nellore', 'Kurnool']
+                },
+                {
+                    name: 'Bangalore',
+                    areas: ['Koramangala', 'Indiranagar', 'Whitefield', 'JP Nagar', 'Electronic City']
+                }
+                // Add more states/cities and their respective areas where services are available
+            ];
+
+            for (var i = 0; i < availableLocations.length; i++) {
+                var state = availableLocations[i];
+                for (var j = 0; j < state.areas.length; j++) {
+                    if (state.areas[j].toLowerCase() === location.toLowerCase()) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

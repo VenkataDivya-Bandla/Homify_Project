@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massage for Men</title>
+    <style>
+        /* Add your styles here */
+        .service-details {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 1100px; /* Adjust the width as needed */
+        }
+
+        .service-details img {
+            width: 200px;
+            height: 140px;
+            border-radius: 5px;
+            float: left;
+            margin-right: 20px;
+        }
+
+        .service-details p {
+            text-align: left; /* Align text to the left */
+            margin-top: 0; /* Remove top margin for the paragraph */
+        }
+
+        .service-details ul {
+            margin-top: -10px; /* Adjust top margin for the unordered list */
+            padding-left: 0; /* Remove default padding for the unordered list */
+        }
+
+        .service-details li {
+            margin-top: 0;
+            list-style-type: none; /* Remove list bullets */
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        /* Styles for the calendar modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 5px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Prime</h2>
+<div class="service-details" id="best-seller-packages">
+    <img src="images/best_seller_packages.jpg" alt="Best Seller Packages">
+    <p>Best Seller Packages</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Explore our best seller packages for a complete grooming experience.</li>
+    </ul>
+    <button onclick="addToCart('Best Seller Packages', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="stress-relief">
+    <img src="images/stress_relief.jpg" alt="Stress Relief">
+    <p>Stress Relief</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹299</li>
+        <li><strong>Duration:</strong> 45 mins</li>
+        <li><strong>Description:</strong> Relaxing therapy to alleviate stress and tension.</li>
+    </ul>
+    <button onclick="addToCart('Stress Relief', 299)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="pain-relief">
+    <img src="images/pain_relief.jpg" alt="Pain Relief">
+    <p>Pain Relief</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹349</li>
+        <li><strong>Duration:</strong> 60 mins</li>
+        <li><strong>Description:</strong> Therapy to reduce muscle pain and discomfort.</li>
+    </ul>
+    <button onclick="addToCart('Pain Relief', 349)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="post-workout">
+    <img src="images/post_workout.jpg" alt="Post Workout">
+    <p>Post Workout</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹249</li>
+        <li><strong>Duration:</strong> 30 mins</li>
+        <li><strong>Description:</strong> Recovery therapy to relax muscles after a workout session.</li>
+    </ul>
+    <button onclick="addToCart('Post Workout', 249)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="relaxation">
+    <img src="images/relaxation.jpg" alt="Relaxation">
+    <p>Relaxation</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹399</li>
+        <li><strong>Duration:</strong> 60 mins</li>
+        <li><strong>Description:</strong> Calming therapy to induce deep relaxation and tranquility.</li>
+    </ul>
+    <button onclick="addToCart('Relaxation', 399)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="add-ons">
+    <img src="images/add_ons.jpg" alt="Add-ons">
+    <p>Add-ons</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Enhance your experience with our optional add-on services.</li>
+    </ul>
+    <button onclick="addToCart('Add-ons', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+<h2>Ayurveda</h2>
+<div class="service-details" id="best-seller-packages">
+    <img src="images/best_seller_packages.jpg" alt="Best Seller Packages">
+    <p>Best Seller Packages</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Explore our best seller packages for a complete grooming experience.</li>
+    </ul>
+    <button onclick="addToCart('Best Seller Packages', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="stress-relief">
+    <img src="images/stress_relief.jpg" alt="Stress Relief">
+    <p>Stress Relief</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹349</li>
+        <li><strong>Duration:</strong> 60 mins</li>
+        <li><strong>Description:</strong> Relaxing massage therapy to relieve stress and promote relaxation.</li>
+    </ul>
+    <button onclick="addToCart('Stress Relief', 349)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="pain-relief">
+    <img src="images/pain_relief.jpg" alt="Pain Relief">
+    <p>Pain Relief</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹399</li>
+        <li><strong>Duration:</strong> 60 mins</li>
+        <li><strong>Description:</strong> Therapeutic massage to alleviate muscle pain and tension.</li>
+    </ul>
+    <button onclick="addToCart('Pain Relief', 399)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="traditional-therapies">
+    <img src="images/traditional_therapies.jpg" alt="Traditional Therapies">
+    <p>Traditional Therapies</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Experience our traditional massage therapies for holistic wellness.</li>
+    </ul>
+    <button onclick="addToCart('Traditional Therapies', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="gift-massages">
+    <img src="images/gift_massages.jpg" alt="Gift Massages">
+    <p>Gift Massages</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Treat your loved ones with our gift massage vouchers for any occasion.</li>
+    </ul>
+    <button onclick="addToCart('Gift Massages', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="ultimate-savings">
+    <img src="images/ultimate_savings.jpg" alt="Ultimate Savings">
+    <p>Ultimate Savings</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Enjoy our ultimate savings packages for multiple sessions at discounted rates.</li>
+    </ul>
+    <button onclick="addToCart('Ultimate Savings', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="add-ons">
+    <img src="images/add_ons.jpg" alt="Add-Ons">
+    <p>Add-Ons</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Enhance your spa experience with our range of add-ons and extra services.</li>
+    </ul>
+    <button onclick="addToCart('Add-Ons', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+<h2>Royale</h2>
+<div class="service-details" id="best-seller-packages">
+    <img src="images/best_seller_packages.jpg" alt="Best Seller Packages">
+    <p>Best Seller Packages</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Explore our best seller packages for a complete relaxation experience.</li>
+    </ul>
+    <button onclick="addToCart('Best Seller Packages', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="stress-relief">
+    <img src="images/stress_relief.jpg" alt="Stress Relief">
+    <p>Stress Relief</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹299</li>
+        <li><strong>Duration:</strong> 45 mins</li>
+        <li><strong>Description:</strong> Professional stress relief therapy to relax your mind and body.</li>
+    </ul>
+    <button onclick="addToCart('Stress Relief', 299)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="pain-relief">
+    <img src="images/pain_relief.jpg" alt="Pain Relief">
+    <p>Pain Relief</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹349</li>
+        <li><strong>Duration:</strong> 60 mins</li>
+        <li><strong>Description:</strong> Pain relief therapy to alleviate muscle and joint pain.</li>
+    </ul>
+    <button onclick="addToCart('Pain Relief', 349)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="calming-retreat">
+    <img src="images/calming_retreat.jpg" alt="Calming Retreat">
+    <p>Calming Retreat</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹499</li>
+        <li><strong>Duration:</strong> 90 mins</li>
+        <li><strong>Description:</strong> Relaxing retreat to escape from the daily hustle and bustle.</li>
+    </ul>
+    <button onclick="addToCart('Calming Retreat', 499)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="gift-massages">
+    <img src="images/gift_massages.jpg" alt="Gift Massages">
+    <p>Gift Massages</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Treat your loved ones with our special gift massage packages.</li>
+    </ul>
+    <button onclick="addToCart('Gift Massages', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="sports-therapy">
+    <img src="images/sports_therapy.jpg" alt="Sports Therapy">
+    <p>Sports Therapy</p>
+    <ul>
+        <li><strong>Cost:</strong> ₹399</li>
+        <li><strong>Duration:</strong> 60 mins</li>
+        <li><strong>Description:</strong> Therapy to enhance sports performance and prevent injuries.</li>
+    </ul>
+    <button onclick="addToCart('Sports Therapy', 399)">Add to Cart</button>
+</div>
+
+<hr>
+
+<div class="service-details" id="add-ons">
+    <img src="images/add_ons.jpg" alt="Add-Ons">
+    <p>Add-Ons</p>
+    <ul>
+        <li><strong>Cost:</strong> Prices Vary</li>
+        <li><strong>Description:</strong> Enhance your experience with our optional add-on services.</li>
+    </ul>
+    <button onclick="addToCart('Add-Ons', 'Prices Vary')">Add to Cart</button>
+</div>
+
+<hr>
+
+<div>
+    <h2>Shopping Cart</h2>
+    <ul id="cartItems"></ul>
+    <button onclick="displayTotalCost()">View Total Cost</button>
+    <div id="totalCost"></div>
+    <button onclick="openCalendarModal()">Book Services</button>
+</div>
+
+<!-- Calendar Modal -->
+<div id="calendarModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCalendarModal()">&times;</span>
+        <h2>Book Service</h2>
+        <label for="selectedDate">Select Date:</label>
+        <input type="date" id="selectedDate" onchange="populateTimeSlots()">
+        <br>
+        <label for="selectedTimeSlot">Select Time Slot:</label>
+        <select id="selectedTimeSlot"></select>
+        <br>
+        <button onclick="bookService()">Book Now</button>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+
+    function addToCart(serviceName, cost, rating) {
+        cart.push({ service: serviceName, cost: cost, rating: rating });
+        alert(serviceName + ' added to cart with cost ₹' + cost + ' and rating ' + rating);
+        displayCartItems();
+    }
+
+    function displayCartItems() {
+        const cartItemsList = document.getElementById('cartItems');
+        cartItemsList.innerHTML = ''; // Clear previous items
+
+        for (let item of cart) {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.service} - Cost: $${item.cost} - Rating: ${item.rating}`;
+            cartItemsList.appendChild(listItem);
+        }
+    }
+
+    function displayTotalCost() {
+        let totalCost = 0;
+        for (let item of cart) {
+            totalCost += item.cost;
+        }
+        document.getElementById('totalCost').textContent = 'Total Cost: $' + totalCost;
+    }
+    
+   
+
+    function openCalendarModal(serviceName, cost, rating) {
+        // Open the calendar modal
+        document.getElementById('calendarModal').style.display = 'block';
+    }
+
+    function closeCalendarModal() {
+        document.getElementById('calendarModal').style.display = 'none';
+    }
+
+    function populateTimeSlots() {
+        const selectedDate = document.getElementById('selectedDate').value;
+        const dayInfo = getDayInfo(selectedDate);
+        const timeSlotSelect = document.getElementById('selectedTimeSlot');
+        timeSlotSelect.innerHTML = ''; // Clear existing options
+
+        if (dayInfo.availableSlots.length > 0) {
+            dayInfo.availableSlots.forEach(slot => {
+                const option = document.createElement('option');
+                option.textContent = slot;
+                timeSlotSelect.appendChild(option);
+            });
+        } else {
+            const option = document.createElement('option');
+            option.textContent = 'No available time slots';
+            timeSlotSelect.appendChild(option);
+        }
+    }
+
+    function bookService() {
+        const selectedDate = document.getElementById('selectedDate').value;
+        const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
+
+        // Add your logic for booking the service
+        console.log('Service booked on:', selectedDate, 'at', selectedTimeSlot);
+
+        // Close the calendar modal
+        closeCalendarModal();
+    }
+    
+    // Mock backend function, replace with API call
+    function getDayInfo(selectedDate) {
+        // Assuming the backend Calendar class is used
+        const calendar = new Calendar();
+
+        const [year, month, day] = selectedDate.split('-').map(Number);
+
+        const dayOfWeek = calendar.get_day(year, month, day);
+        const holidayReason = calendar.get_holiday_reason(year, month, day);
+        const availableSlots = !holidayReason ? calendar.get_available_slots(dayOfWeek) : [];
+
+        return { dayOfWeek, holidayReason, availableSlots };
+    }
+
+    class Calendar {
+        constructor() {
+            // Initialize available time slots for each day
+            this.available_slots = {
+                'Monday': ['9 AM - 10 AM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                'Tuesday': ['10 AM - 12 PM', '3 PM - 5 PM', '8 PM - 10 PM'],
+                'Wednesday': ['9 AM - 11 AM', '1 PM - 3 PM', '6 PM - 8 PM'],
+                'Thursday': ['11 AM - 1 PM', '4 PM - 6 PM', '9 PM - 10 PM'],
+                'Friday': ['10 AM - 12 PM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                'Saturday': ['9 AM - 11 AM', '1 PM - 3 PM', '5 PM - 7 PM'],
+                'Sunday': ['3 PM - 5 PM', '6 PM - 8 PM', '9 PM - 10 PM']
+            };
+            // Initialize holidays with reasons
+            this.holidays = {
+                2024: {
+                    1: { 26: "Republic Day" },
+                // Other holidays...
+                }
+            };
+        }
+          
+        get_day(y, m, d) {
+            // Create a Date object with the provided year, month, and day
+            const inputDate = new Date(y, m - 1, d); // Note: Month is 0-based in JavaScript
+
+            // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+            const dayOfWeek = inputDate.getDay();
+
+            // Define an array of days of the week
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            // Return the corresponding day of the week
+            return daysOfWeek[dayOfWeek];
+        }
+
+        get_available_slots(day) {
+            return this.available_slots[day] || [];
+        }
+
+        get_holiday_reason(y, m, d) {
+            // Check if the date is a holiday
+            return this.holidays[y]?.[m]?.[d];
+        }
+    }
+</script>
+</body>
+
+</html>
+

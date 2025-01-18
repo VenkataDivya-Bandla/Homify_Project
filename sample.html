@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washing Machine Repair Services</title>
+    <style>
+        /* Add your styles here */
+        .service-details {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 70%; /* Adjust the width as needed */
+        }
+
+        .service-details img {
+            width: 200px;
+            height: 140px;
+            margin-left: 800px; /* Add margin to the left side of the image */
+            border-radius: 5px;
+        }
+
+        .service-details p {
+            text-align: left; /* Align text to the left */
+            margin-top: -130px; /* Remove top margin for the paragraph */
+        }
+
+        .service-details ul {
+            margin-top: -10px; /* Adjust top margin for the unordered list */
+            padding-left: 0; /* Remove default padding for the unordered list */
+        }
+
+        .service-details li {
+            margin-top: 0;
+            list-style-type: none; /* Remove list bullets */
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+            width: 73%;
+        }
+        
+        /* Styles for the calendar modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 5px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="service-details" id="frontloadCheckup">
+        <img src="images/frontload_checkup.jpg" alt="Front-load Checkup" width="80px" height="80px">
+        <p>Front-load Washing Machine Checkup</p>
+        <ul>
+            <li><strong>Cost:</strong> $80</li>
+            <li><strong>Warranty:</strong> 3 months</li>
+            <li><strong>Rating:</strong> <input type="number" id="frontloadCheckupRating" min="1" max="5" step="1" value="5"></li>
+            <li><strong>About:</strong> Professional checkup service for front-load washing machines to ensure optimal performance and longevity.</li>
+        </ul>
+        <button onclick="addToCart('Front-load Washing Machine Checkup', 80, getRating('frontloadCheckupRating'))">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="semiautoCheckup">
+        <img src="images/semiauto_checkup.jpg" alt="Semi-automatic Checkup" width="80px" height="80px">
+        <p>Semi-automatic Washing Machine Checkup</p>
+        <ul>
+            <li><strong>Cost:</strong> $70</li>
+            <li><strong>Warranty:</strong> 3 months</li>
+            <li><strong>Rating:</strong> <input type="number" id="semiautoCheckupRating" min="1" max="5" step="1" value="5"></li>
+            <li><strong>About:</strong> Comprehensive checkup service for semi-automatic washing machines to maintain their efficiency and functionality.</li>
+        </ul>
+        <button onclick="addToCart('Semi-automatic Washing Machine Checkup', 70, getRating('semiautoCheckupRating'))">Add to Cart</button>
+    </div>
+    
+    <hr>
+    
+    <div class="service-details" id="toploadCheckup">
+        <img src="images/topload_checkup.jpg" alt="Top-load Checkup" width="80px" height="80px">
+        <p>Top-load Washing Machine Checkup</p>
+        <ul>
+            <li><strong>Cost:</strong> $60</li>
+            <li><strong>Warranty:</strong> 3 months</li>
+            <li><strong>Rating:</strong> <input type="number" id="toploadCheckupRating" min="1" max="5" step="1" value="5"></li>
+            <li><strong>About:</strong> Thorough checkup service for top-load washing machines to ensure smooth operation and performance.</li>
+        </ul>
+        <button onclick="addToCart('Top-load Washing Machine Checkup', 60, getRating('toploadCheckupRating'))">Add to Cart</button>
+    </div>
+    <hr>
+    <div class="service-details" id="notSureOfIssuewashingmachine">
+        <img src="images/washingmachine_not_sure_issue.jpg" alt="Not Sure of the Issue">
+        <p>Not Sure of the Issue</p>
+        <ul>
+            <li><strong>Rating:</strong> 4.81 (29.7K)</li>
+            <li><strong>Cost:</strong> ₹249</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Description:</strong> Diagnostic service for geysers with unknown issues</li>
+        </ul>
+        <button onclick="addToCart('Not Sure of the Issue', 249, 4.81)">Add to Cart</button>
+    </div>
+
+    <hr>
+    
+    <!-- Repeat the same structure for other services -->
+    
+    <div>
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <button onclick="displayTotalCost()">View Total Cost</button>
+        <div id="totalCost"></div>
+        <button onclick="openCalendarModal()">Book Services</button>
+    </div>
+    
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalendarModal()">&times;</span>
+            <h2>Book Service</h2>
+            <label for="selectedDate">Select Date:</label>
+            <input type="date" id="selectedDate" onchange="populateTimeSlots()">
+            <br>
+            <label for="selectedTimeSlot">Select Time Slot:</label>
+            <select id="selectedTimeSlot"></select>
+            <br>
+            <button onclick="bookService()">Book Now</button>
+        </div>
+    </div>
+
+    <script>
+        // Define addToCart function to add service to cart
+        function addToCart(serviceName, cost, rating) {
+            openCalendarModal(serviceName, cost, rating);
+        }
+
+        function openCalendarModal() {
+            // Open the calendar modal
+            document.getElementById('calendarModal').style.display = 'block';
+        }
+
+        function closeCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'none';
+        }
+
+        function populateTimeSlots() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            const dayInfo = getDayInfo(selectedDate);
+            const timeSlotSelect = document.getElementById('selectedTimeSlot');
+            timeSlotSelect.innerHTML = ''; // Clear existing options
+
+            if (dayInfo.availableSlots.length > 0) {
+                dayInfo.availableSlots.forEach(slot => {
+                    const option = document.createElement('option');
+                    option.textContent = slot;
+                    timeSlotSelect.appendChild(option);
+                });
+            } else {
+                const option = document.createElement('option');
+                option.textContent = 'No available time slots';
+                timeSlotSelect.appendChild(option);
+            }
+        }
+
+        function bookService() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
+
+            // Add your logic for booking the service
+            console.log('Service booked on:', selectedDate, 'at', selectedTimeSlot);
+
+            // Close the calendar modal
+            closeCalendarModal();
+        }
+        
+        let cart = [];
+
+        function addToCart(serviceName, cost, rating) {
+            cart.push({ service: serviceName, cost: cost, rating: rating });
+            alert(serviceName + ' added to cart with cost $' + cost + ' and rating ' + rating);
+            displayCartItems();
+        }
+
+        function displayCartItems() {
+            const cartItemsList = document.getElementById('cartItems');
+            cartItemsList.innerHTML = ''; // Clear previous items
+
+            for (let item of cart) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.service} - Cost: $${item.cost} - Rating: ${item.rating}`;
+                cartItemsList.appendChild(listItem);
+            }
+        }
+
+        function getRating(inputId) {
+            return document.getElementById(inputId).value;
+        }
+
+        function displayTotalCost() {
+            let totalCost = 0;
+            for (let item of cart) {
+                totalCost += item.cost;
+            }
+            document.getElementById('totalCost').textContent = 'Total Cost: $' + totalCost;
+        }
+        
+        // Mock backend function, replace with API call
+        function getDayInfo(selectedDate) {
+            // Assuming the backend Calendar class is used
+            const calendar = new Calendar();
+
+            const [year, month, day] = selectedDate.split('-').map(Number);
+
+            const dayOfWeek = calendar.get_day(year, month, day);
+            const holidayReason = calendar.get_holiday_reason(year, month, day);
+            const availableSlots = !holidayReason ? calendar.get_available_slots(dayOfWeek) : [];
+
+            return { dayOfWeek, holidayReason, availableSlots };
+        }
+
+        class Calendar {
+            constructor() {
+                // Initialize available time slots for each day
+                this.available_slots = {
+                    'Monday': ['9 AM - 10 AM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Tuesday': ['10 AM - 12 PM', '3 PM - 5 PM', '8 PM - 10 PM'],
+                    'Wednesday': ['9 AM - 11 AM', '1 PM - 3 PM', '6 PM - 8 PM'],
+                    'Thursday': ['11 AM - 1 PM', '4 PM - 6 PM', '9 PM - 10 PM'],
+                    'Friday': ['10 AM - 12 PM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Saturday': ['9 AM - 11 AM', '1 PM - 3 PM', '5 PM - 7 PM'],
+                    'Sunday': ['3 PM - 5 PM', '6 PM - 8 PM', '9 PM - 10 PM']
+                };
+                // Initialize holidays with reasons
+                this.holidays = {
+                    2024: {
+                        1: { 26: "Republic Day" },
+                    // Other holidays...
+                    }
+                };
+            }
+              
+            get_day(y, m, d) {
+                // Create a Date object with the provided year, month, and day
+                const inputDate = new Date(y, m - 1, d); // Note: Month is 0-based in JavaScript
+
+                // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+                const dayOfWeek = inputDate.getDay();
+
+                // Define an array of days of the week
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+                // Return the corresponding day of the week
+                return daysOfWeek[dayOfWeek];
+            }
+
+            get_available_slots(day) {
+                return this.available_slots[day] || [];
+            }
+
+            get_holiday_reason(y, m, d) {
+                // Check if the date is a holiday
+                return this.holidays[y]?.[m]?.[d];
+            }
+        }
+    </script>
+</body>
+
+</html>

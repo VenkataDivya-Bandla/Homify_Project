@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homify - Signup</title>
+<script>
+function validateForm(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    var username = document.getElementById("username").value;
+    var email = document.getElementById("email").value;
+    var phoneNumber = document.getElementById("phoneNumber").value;
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+    var errorMessage = document.getElementById("errorMessage");
+
+    errorMessage.innerHTML = "";
+
+    if (username === "" || email === "" || phoneNumber === "" || password === "" || confirmPassword === "") {
+        errorMessage.innerHTML = "All fields are required.";
+        return false;
+    }
+
+    if (!/^[a-zA-Z]+$/.test(username)) {
+        errorMessage.innerHTML = "Username should contain only alphabetic characters.";
+        return false;
+    }
+
+    if (!validateEmail(email)) {
+        errorMessage.innerHTML = "Invalid email format.";
+        return false;
+    }
+
+    if (!validatePhoneNumber(phoneNumber)) {
+        errorMessage.innerHTML = "Invalid phone number format.";
+        return false;
+    }
+
+    if (!validatePassword(password)) {
+        errorMessage.innerHTML = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.";
+        return false;
+    }
+
+    if (password.length < 6) {
+        errorMessage.innerHTML = "Password must be at least 6 characters long.";
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        errorMessage.innerHTML = "Passwords do not match.";        
+        return false;
+    }
+
+    // If all validations pass, submit the form
+    document.getElementById("signupForm").submit();
+
+    // Redirect to homepage.html
+    //window.location.href = "homepage.html";
+
+    return true;
+}
+
+function validateEmail(email) {
+    // Validate email format (contains @ and valid domain)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validatePhoneNumber(phoneNumber) {
+    // Validate phone number format (starts with 6, 7, 8, or 9 and consists of 10 digits)
+    return /^[6-9]\d{9}$/.test(phoneNumber);
+}
+
+function validatePassword(password) {
+    // Validate password format (at least one lowercase letter, one uppercase letter, one digit, and one special character)
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]+$/.test(password);
+}
+</script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Signup to Homify</h2>
+    <form action="connect.php" method="post" id="signupForm" onsubmit="return validateForm(event)">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="phoneNumber">Phone Number:</label><br>
+        <input type="text" id="phoneNumber" name="phoneNumber"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword"><br>
+        <input type="submit" value="Signup">
+    </form>
+    <p id="errorMessage" style="color: red; font-size: 14px;"></p>
+</div>
+<div>
+    <p>Already have an account? <a href="login.html">Login here</a>.</p>
+</div>
+
+</body>
+</html>

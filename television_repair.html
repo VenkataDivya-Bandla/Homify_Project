@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Television Repair Services</title>
+    <style>
+        /* Add your styles here */
+        .service-details {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 1100px; /* Adjust the width as needed */
+            height:80 px;
+        }
+
+        .service-details img {
+            width: 200px;
+            height: 140px;
+            margin-left: 800px; /* Add margin to the left side of the image */
+            border-radius: 5px;
+        }
+
+        .service-details p {
+            text-align: left; /* Align text to the left */
+            margin-top: -100px; /* Remove top margin for the paragraph */
+        }
+
+        .service-details ul {
+            margin-top: -10px; /* Adjust top margin for the unordered list */
+            padding-left: 0; /* Remove default padding for the unordered list */
+        }
+
+        .service-details li {
+            margin-top: 0;
+            list-style-type: none; /* Remove list bullets */
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+            width: 73%;
+        }
+        
+        /* Styles for the calendar modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 5px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="service-details" id="installation32">
+        <img src="images/television_installation.jpg" alt="Television Installation">
+        <p>Installation Service for 32" Television</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹499</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue"></span></li>
+            <li><strong>Description:</strong> Professional installation service for 32" televisions</li>
+        </ul>
+        <button onclick="addToCart('Installation Service for 32&quot; Television', 499)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="uninstallation32">
+        <img src="images/television_uninstallation.jpg" alt="Television Uninstallation">
+        <p>Uninstallation Service for 32" Television</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹399</li>
+            <li><strong>Duration:</strong> 30 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue1"></span></li>
+            <li><strong>Description:</strong> Professional uninstallation service for 32" televisions</li>
+        </ul>
+        <button onclick="addToCart('Uninstallation Service for 32&quot; Television', 399)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="installation42">
+        <img src="images/television_installation1.jpg" alt="Television Installation">
+        <p>Installation Service for 42" Television</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹599</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue2"></span></li>
+            <li><strong>Description:</strong> Professional installation service for 42" televisions</li>
+        </ul>
+        <button onclick="addToCart('Installation Service for 42&quot; Television', 599)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="uninstallation42">
+        <img src="images/television_uninstallation1.jpg" alt="Television Uninstallation">
+        <p>Uninstallation Service for 42" Television</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹499</li>
+            <li><strong>Duration:</strong> 30 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue3"></span></li>
+            <li><strong>Description:</strong> Professional uninstallation service for 42" televisions</li>
+        </ul>
+        <button onclick="addToCart('Uninstallation Service for 42&quot; Television', 499)">Add to Cart</button>
+    </div>
+
+    <hr>
+    <div class="service-details" id="buzzCrackSound">
+        <img src="images/television_buzz_crack_sound.jpg" alt="Buzz/Cracking Sound Repair">
+        <p>Buzz/Cracking Sound Repair</p>
+        <ul>
+            
+            <li><strong>Cost:</strong> ₹249</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue4"></span></li>
+            <li><strong>Description:</strong> Can hear a buzzing/vibrating/crackling sound</li>
+        </ul>
+        <button onclick="addToCart('Buzz/Cracking Sound Repair', 249, 4.83)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="colourIssue">
+        <img src="images/television_colour_issue.jpg" alt="Colour Issue Repair">
+        <p>Colour Issue Repair</p>
+        <ul>
+            
+            <li><strong>Cost:</strong> ₹400</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue5"></span></li>
+            <li><strong>Description:</strong> Can see distorted colors</li>
+        </ul>
+        <button onclick="addToCart('Colour Issue Repair', 249, 4.81)">Add to Cart</button>
+    </div>
+
+    <hr>
+    <div class="service-details" id="halfDisplay">
+        <img src="images/television_half_display.jpg" alt="Half Display Repair">
+        <p>Half Display Repair</p>
+        <ul>
+            
+            <li><strong>Cost:</strong> ₹550</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue6"></span></li>
+            <li><strong>Description:</strong> Repair for TVs with a half-display issue</li>
+        </ul>
+        <button onclick="addToCart('Half Display Repair', 249, 4.79)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="lowSound">
+        <img src="images/television_low_sound.jpg" alt="Low Sound Repair">
+        <p>Low Sound Repair</p>
+        <ul>
+           
+            <li><strong>Cost:</strong> ₹320</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue7"></span></li>
+            <li><strong>Description:</strong> Repair for TVs with low sound output</li>
+        </ul>
+        <button onclick="addToCart('Low Sound Repair', 249, 4.82)">Add to Cart</button>
+    </div>
+
+    <hr>
+    <div class="service-details" id="noDisplay">
+        <img src="images/television_no_display.jpg" alt="No Display Repair">
+        <p>No Display Repair</p>
+        <ul>
+            
+            <li><strong>Cost:</strong> ₹600</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue8"></span></li>
+            <li><strong>Description:</strong> Repair for TVs with no display</li>
+        </ul>
+        <button onclick="addToCart('No Display Repair', 249, 4.82)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="verticalHorizontalLines">
+        <img src="images/television_vertical_horizontal_lines.jpeg" alt="Vertical / Horizontal Lines Repair">
+        <p>Vertical / Horizontal Lines Repair</p>
+        <ul>
+            
+            <li><strong>Cost:</strong> ₹400</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue9"></span></li>
+            <li><strong>Description:</strong> Repair for TVs with vertical or horizontal line issues on the display</li>
+        </ul>
+        <button onclick="addToCart('Vertical / Horizontal Lines Repair', 249, 4.76)">Add to Cart</button>
+    </div>
+
+    <hr>
+    <div class="service-details" id="imageIssue">
+        <img src="images/television_image_issue.jpeg" alt="Blur/Double/Flickering Image Repair">
+        <p>Blur/Double/Flickering Image Repair</p>
+        <ul>
+           
+            <li><strong>Cost:</strong> ₹700</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue10"></span></li>
+            <li><strong>Description:</strong> Repair for TVs with image blur, double vision, or flickering issues</li>
+        </ul>
+        <button onclick="addToCart('Blur/Double/Flickering Image Repair', 249, 4.78)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="spotsIssue">
+        <img src="images/television_spots_issue.jpg" alt="White/Black Spots Repair">
+        <p>White/Black Spots Repair</p>
+        <ul>
+            
+            <li><strong>Cost:</strong> ₹300</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue11"></span></li>
+            <li><strong>Description:</strong> Repair for TVs with white or black spots on the display</li>
+        </ul>
+        <button onclick="addToCart('White/Black Spots Repair',300,4.9)">Add to Cart</button>
+    </div>
+
+    <hr>
+    <div class="service-details" id="installation50">
+        <img src="images/television_installation.jpg" alt="Television Installation">
+        <p>Installation Service for 50" Television</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹200</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue12"></span></li>
+            <li><strong>Description:</strong> Professional installation service for 50" televisions</li>
+        </ul>
+        <button onclick="addToCart('Installation Service for 50&quot; Television',200,4.9)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div class="service-details" id="uninstallation50">
+        <img src="images/television_uninstallation.jpg" alt="Television Uninstallation" width="80px" height="80px">
+    
+        <p>Uninstallation Service for 50" Television</p>
+        <ul>
+            <li><strong>Cost:</strong> ₹599</li>
+            <li><strong>Duration:</strong> 30 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue13"></span></li>
+            <li><strong>Description:</strong> Professional uninstallation service for 50" televisions</li>
+        </ul>
+        <button onclick="addToCart('Uninstallation Service for 50&quot; Television', 599,4.9)">Add to Cart</button>
+    </div>
+
+    <hr>
+    <div class="service-details" id="notSureIssue">
+        <img src="images/television_not_sure_issue.jpg" alt="Not Sure of the Issue Repair">
+        <p>Not Sure of the Issue Repair</p>
+        <ul>
+            
+            <li><strong>Cost:</strong> ₹500</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Rating:</strong> <span id="averageRatingValue14"></span></li>
+            <li><strong>Description:</strong> Diagnostic service for TVs with unknown issues</li>
+        </ul>
+        <button onclick="addToCart('Not Sure of the Issue Repair', 249, 4.81)">Add to Cart</button>
+    </div>
+
+    <div>
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <button onclick="displayTotalCost()">View Total Cost</button>
+        <div id="totalCost"></div>
+        <button onclick="openCalendarModal()">Book Services</button>
+    </div>
+    <p id="averageRatingText">Rating: </p> <!-- Add an empty paragraph to display the average rating -->
+
+    
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalendarModal()">&times;</span>
+            <h2>Book Service</h2>
+            <label for="selectedDate">Select Date:</label>
+            <input type="date" id="selectedDate" onchange="populateTimeSlots()">
+            <br>
+            <label for="selectedTimeSlot">Select Time Slot:</label>
+            <select id="selectedTimeSlot"></select>
+            <br>
+            <button onclick="bookService()">Book Now</button>
+        </div>
+    </div>
+     <!-- Payment Modal -->
+     <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePaymentModal()">&times;</span>
+            <h2>Payment</h2>
+            <p>Total Cost: <span id="totalCostPayment"></span></p>
+            
+            <!-- Payment Form -->
+            <form id="paymentForm" onsubmit="handlePayment(event)">
+                <label for="paymentMethod">Select Payment Method:</label>
+                <select id="paymentMethod" onchange="togglePaymentDetails()">
+                    <option value="creditCard">Credit/Debit Card</option>
+                    <option value="netBanking">Net Banking</option>
+                    <option value="upi">UPI</option>
+                    <!-- Add more payment methods as needed -->
+                </select>
+                
+                <!-- Payment details based on selected method -->
+                <div id="creditCardDetails" class="paymentDetails">
+                    <!-- Credit card details fields -->
+                    <!-- Add fields for card number, expiry date, CVV, etc. -->
+                </div>
+                
+                <div id="netBankingDetails" class="paymentDetails">
+                    <!-- Net banking details fields -->
+                    <!-- Add fields for bank selection, account number, etc. -->
+                </div>
+                
+                <div id="upiDetails" class="paymentDetails">
+                    <!-- UPI details fields -->
+                    <!-- Add field for UPI ID -->
+                </div>
+                
+                <button type="submit">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+    
+
+
+    <script>
+         // Function to handle payment form submission
+         function handlePayment(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get selected payment method
+            const paymentMethod = document.getElementById('paymentMethod').value;
+
+            // Process payment based on selected method
+            switch (paymentMethod) {
+                case 'creditCard':
+                    // Handle credit/debit card payment
+                    break;
+                case 'netBanking':
+                    // Handle net banking payment
+                    break;
+                case 'upi':
+                    // Redirect to PhonePe for UPI payment
+                    window.location.href = 'https://www.phonepe.com';
+                    break;
+                // Add cases for other payment methods as needed
+            }
+
+            // Close the payment modal after payment is processed
+            closePaymentModal();
+        }
+        
+        // Function to toggle payment details based on selected method
+        function togglePaymentDetails() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const paymentDetails = document.querySelectorAll('.paymentDetails');
+            
+            paymentDetails.forEach(detail => {
+                detail.style.display = 'none'; // Hide all payment details fields
+            });
+            
+            document.getElementById(paymentMethod + 'Details').style.display = 'block'; // Show selected payment details
+        }
+        let cart = [];
+        
+        let serviceReviews = [
+            { 'rating': 5.0 },
+            { 'rating': 4.8 },
+            { 'rating': 4.9 },
+            { 'rating': 4.7 }
+            // Add more sample ratings as needed
+        ];
+
+        function calculateAverageRating(reviews) {
+            let totalRatings = 0;
+            for (let review of reviews) {
+                totalRatings += review.rating;
+            }
+            let averageRating = totalRatings / reviews.length;
+            return averageRating.toFixed(1); // Rounds to one decimal place
+        }
+        const averageRating = calculateAverageRating(serviceReviews);
+        document.getElementById('averageRatingValue').textContent = averageRating;
+        document.getElementById('averageRatingValue1').textContent = averageRating;
+        document.getElementById('averageRatingValue2').textContent = averageRating;
+        document.getElementById('averageRatingValue3').textContent = averageRating;
+        document.getElementById('averageRatingValue4').textContent = averageRating;
+        document.getElementById('averageRatingValue5').textContent = averageRating;
+        document.getElementById('averageRatingValue6').textContent = averageRating;
+        document.getElementById('averageRatingValue7').textContent = averageRating;
+        document.getElementById('averageRatingValue8').textContent = averageRating;
+        document.getElementById('averageRatingValue9').textContent = averageRating;
+        document.getElementById('averageRatingValue10').textContent = averageRating;
+        document.getElementById('averageRatingValue11').textContent = averageRating;
+        document.getElementById('averageRatingValue12').textContent = averageRating;
+        document.getElementById('averageRatingValue13').textContent = averageRating;
+        document.getElementById('averageRatingValue14').textContent = averageRating;
+        
+        
+        
+
+
+
+    function addToCart(serviceName, cost, rating) {
+        const serviceData = {
+            service: serviceName,
+            cost: cost,
+            rating: rating
+        };
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "cart.php", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        // Move the cart operations inside the success block
+                        alert(serviceName + ' added to cart with cost ₹' + cost + ' and rating ' + rating);
+                        cart.push({ service: serviceName, cost: cost, rating: rating });
+                        displayCartItems();
+                    } else {
+                        alert("Failed to add service to cart: " + response.message);
+                    }
+                } else {
+                    // Handle HTTP errors
+                    alert("Error: " + xhr.status);
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify(serviceData));
+    }
+
+
+                // Function to remove an item from the cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            displayCartItems();
+        }
+
+        function displayCartItems() {
+            const cartItemsList = document.getElementById('cartItems');
+            cartItemsList.innerHTML = '';
+
+            for (let i = 0; i < cart.length; i++) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${cart[i].service} - Cost: ₹${cart[i].cost} - Rating: ${cart[i].rating}`;
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    removeFromCart(i); // Call removeFromCart with the index
+                };
+                listItem.appendChild(removeButton);
+                cartItemsList.appendChild(listItem);
+            }
+        }
+        function displayTotalCost() {
+            let totalCost = 0;
+            for (let item of cart) {
+                totalCost += item.cost;
+            }
+            document.getElementById('totalCost').textContent = 'Total Cost: ₹' + totalCost;
+        }
+
+        function openCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'block';
+        }
+
+        function closeCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'none';
+        }
+        // Close payment modal
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function populateTimeSlots() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            const dayInfo = getDayInfo(selectedDate);
+            const timeSlotSelect = document.getElementById('selectedTimeSlot');
+            timeSlotSelect.innerHTML = '';
+
+            if (dayInfo.availableSlots.length > 0) {
+                dayInfo.availableSlots.forEach(slot => {
+                    const option = document.createElement('option');
+                    option.textContent = slot;
+                    timeSlotSelect.appendChild(option);
+                });
+            } else {
+                const option = document.createElement('option');
+                option.textContent = 'No available time slots';
+                timeSlotSelect.appendChild(option);
+            }
+        }
+
+        function bookService() {
+            // Implement booking service logic
+            // Open payment modal after booking is confirmed
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        function getDayInfo(selectedDate) {
+            const calendar = new Calendar();
+            const [year, month, day] = selectedDate.split('-').map(Number);
+            const dayOfWeek = calendar.get_day(year, month, day);
+            const holidayReason = calendar.get_holiday_reason(year, month, day);
+            const availableSlots = !holidayReason ? calendar.get_available_slots(dayOfWeek) : [];
+            return { dayOfWeek, holidayReason, availableSlots };
+            }
+
+        class Calendar {
+            constructor() {
+                this.available_slots = {
+                    'Monday': ['9 AM - 10 AM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Tuesday': ['10 AM - 12 PM', '3 PM - 5 PM', '8 PM - 10 PM'],
+                    'Wednesday': ['9 AM - 11 AM', '1 PM - 3 PM', '6 PM - 8 PM'],
+                    'Thursday': ['11 AM - 1 PM', '4 PM - 6 PM', '9 PM - 10 PM'],
+                    'Friday': ['10 AM - 12 PM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Saturday': ['9 AM - 11 AM', '1 PM - 3 PM', '5 PM - 7 PM'],
+                    'Sunday': ['3 PM - 5 PM', '6 PM - 8 PM', '9 PM - 10 PM']
+                };
+                this.holidays = {
+                    2024: {
+                        1: { 26: "Republic Day" },
+                    }
+                };
+            }
+
+            get_day(y, m, d) {
+                const inputDate = new Date(y, m - 1, d);
+                const dayOfWeek = inputDate.getDay();
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                return daysOfWeek[dayOfWeek];
+            }
+
+            get_available_slots(day) {
+                return this.available_slots[day] || [];
+            }
+
+            get_holiday_reason(y, m, d) {
+                return this.holidays[y] && this.holidays[y][m] && this.holidays[y][m][d];
+            }
+        }
+    </script>
+</body>
+</html>
+        

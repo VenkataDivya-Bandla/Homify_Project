@@ -1,0 +1,29 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+.profile, .bookings {
+    margin-bottom: 20px;
+}
+
+.bookings ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.bookings li {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.bookings li h3 {
+    margin-top: 0;
+}

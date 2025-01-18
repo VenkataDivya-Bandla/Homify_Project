@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Your Company Name" />
+    <meta name="description" content="AC Services Page">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Your Company - AC Services</title>
+    <link href="css/plugins.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Add your styles here */
+        /* ... (previous styles) ... */
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .close-modal {
+            cursor: pointer;
+            color: #009FD9;
+            font-size: 20px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #009FD9;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0077A8;
+        }
+    </style>
+</head>
+
+<body class="boxed-simple">
+
+    <!-- ... (previous code) ... -->
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <span class="close-modal" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" src="" alt="Service Image">
+            <h3 id="modalTitle">Worker Name</h3>
+            <p id="modalCost">Cost: $50/hour</p>
+            <p id="modalRating">Rating: 4.5/5</p>
+            <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container">
+        <h2>AC Services</h2>
+        <div class="service">
+            <img src="images/ac1.jpg" alt="AC Service 1" onclick="openImageModal('images/ac_service1.jpg', 'John Doe', 'Cost: $50/hour', 'Rating: 4.5/5')">
+            <p>AC Repairing</p>
+        </div>
+        <div class="service">
+            <img src="images/ac2.jpg" alt="AC Service 2" onclick="openImageModal('images/ac_service2.jpg', 'Jane Smith', 'Cost: $45/hour', 'Rating: 4.2/5')">
+            <p>AC Fixing</p>
+        </div>
+        <!-- Add more services with images and descriptions as needed -->
+    </div>
+
+    <!-- ... (remaining code) ... -->
+
+    <script>
+        // ... (previous script functions) ...
+
+        function openImageModal(imageSrc, title, cost, rating) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalCost').textContent = cost;
+            document.getElementById('modalRating').textContent = rating;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function addToCart() {
+            // Implement your logic to add the service to the cart
+            alert('Service added to cart. Implement cart functionality as needed.');
+            closeImageModal();  // Close the modal after adding to cart
+        }
+    </script>
+</body>
+
+</html>

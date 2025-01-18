@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scalp Treatments</title>
+    <style>
+        .service-details {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            width: 70%;
+        }
+
+        .service-details img {
+            width: 200px;
+            height: 140px;
+            margin-left: 800px;
+            border-radius: 5px;
+        }
+
+        .service-details p {
+            text-align: left;
+            margin-top: -130px;
+        }
+
+        .service-details ul {
+            margin-top: -10px;
+            padding-left: 0;
+        }
+
+        .service-details li {
+            margin-top: 0;
+            list-style-type: none;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+            width: 73%;
+        }
+
+        /* Modal styles */
+        .modal,
+        .payment-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content,
+        .payment-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="service-details" id="Zone_theraphy_reflexology">
+        <img src="images/reflexology.jpeg" alt="Zone_theraphy_reflexology">
+        <p>Zone Theraphy Reflexology</p>
+        <ul>
+            <li><strong>Rating:</strong> 4.7</li>
+            <li><strong>Cost:</strong> ₹299</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Description:</strong> Professional Zone Theraphy Reflexology</li>
+        </ul>
+        <button onclick="addToCart('Zone theraphy reflexology', 299, 4.7)">Add to Cart</button>
+    </div>    
+
+    <hr>
+
+    <hr>
+
+    <div class="service-details" id="sports_reflexology">
+        <img src="images/sports_reflexology.jpg" alt="sports_reflexology">
+        <p>Sports Reflexology</p>
+        <ul>
+            <li><strong>Rating:</strong> 4.7</li>
+            <li><strong>Cost:</strong> ₹299</li>
+            <li><strong>Duration:</strong> 60 mins</li>
+            <li><strong>Description:</strong> Professional Sports Reflexology service</li>
+        </ul>
+        <button onclick="addToCart('sports reflexology', 299, 4.7)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <button onclick="displayTotalCost()">View Total Cost</button>
+        <div id="totalCost"></div>
+        <button onclick="openCalendarModal()">Book Services</button>
+    </div>
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalendarModal()">&times;</span>
+            <h2>Book Service</h2>
+            <label for="selectedDate">Select Date:</label>
+            <input type="date" id="selectedDate" onchange="populateTimeSlots()">
+            <br>
+            <label for="selectedTimeSlot">Select Time Slot:</label>
+            <select id="selectedTimeSlot"></select>
+            <br>
+            <button onclick="bookService()">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="payment-modal">
+        <div class="payment-modal-content">
+            <h2>Payment Options</h2>
+            <label>Select Payment Method:</label>
+            <select id="paymentMethod" onchange="togglePaymentDetails()">
+                <option value="creditCard">Credit Card</option>
+                <option value="debitCard">Debit Card</option>
+                <option value="upi">UPI</option>
+            </select>
+            <div id="paymentDetails"></div>
+            <br>
+            <button onclick="proceedWithPayment()">Proceed</button>
+            <button onclick="closePaymentModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(serviceName, cost, rating) {
+            cart.push({ service: serviceName, cost: cost, rating: rating });
+            alert(`${serviceName} added to cart.`);
+            displayCartItems();
+        }
+
+        function displayCartItems() {
+            const cartItemsList = document.getElementById('cartItems');
+            cartItemsList.innerHTML = cart.map((item, index) => `
+                <li>${item.service} - ₹${item.cost}
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                </li>`).join('');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            displayCartItems();
+            displayTotalCost();
+        }
+
+        function displayTotalCost() {
+            const total = cart.reduce((sum, item) => sum + item.cost, 0);
+            document.getElementById('totalCost').textContent = `Total Cost: ₹${total}`;
+        }
+
+        function openCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'block';
+        }
+
+        function closeCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'none';
+        }
+
+        class Calendar {
+            constructor() {
+                this.available_slots = {
+                    'Monday': ['9 AM - 10 AM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Tuesday': ['10 AM - 12 PM', '3 PM - 5 PM', '8 PM - 10 PM'],
+                    'Wednesday': ['9 AM - 11 AM', '1 PM - 3 PM', '6 PM - 8 PM'],
+                    'Thursday': ['11 AM - 1 PM', '4 PM - 6 PM', '9 PM - 10 PM'],
+                    'Friday': ['10 AM - 12 PM', '2 PM - 4 PM', '7 PM - 9 PM'],
+                    'Saturday': ['9 AM - 11 AM', '1 PM - 3 PM', '5 PM - 7 PM'],
+                    'Sunday': ['3 PM - 5 PM', '6 PM - 8 PM', '9 PM - 10 PM']
+                };
+            }
+
+            getDayOfWeek(dateString) {
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const date = new Date(dateString);
+                return days[date.getDay()];
+            }
+
+            getAvailableSlots(day) {
+                return this.available_slots[day] || [];
+            }
+        }
+
+        const calendar = new Calendar();
+
+        function populateTimeSlots() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            const timeSlotSelect = document.getElementById('selectedTimeSlot');
+            timeSlotSelect.innerHTML = '';
+
+            if (selectedDate) {
+                const dayOfWeek = calendar.getDayOfWeek(selectedDate);
+                const slots = calendar.getAvailableSlots(dayOfWeek);
+
+                if (slots.length > 0) {
+                    slots.forEach(slot => {
+                        const option = document.createElement('option');
+                        option.textContent = slot;
+                        timeSlotSelect.appendChild(option);
+                    });
+                } else {
+                    const noSlotsOption = document.createElement('option');
+                    noSlotsOption.textContent = 'No slots available';
+                    timeSlotSelect.appendChild(noSlotsOption);
+                }
+            } else {
+                const selectDateOption = document.createElement('option');
+                selectDateOption.textContent = 'Please select a date first';
+                timeSlotSelect.appendChild(selectDateOption);
+            }
+        }
+
+        function bookService() {
+            closeCalendarModal();
+            openPaymentModal();
+        }
+
+        function openPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function togglePaymentDetails() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const paymentDetails = document.getElementById('paymentDetails');
+            if (paymentMethod === 'upi') {
+                paymentDetails.innerHTML = '<p>You will be redirected to PhonePe for UPI payments.</p>';
+            } else {
+                paymentDetails.innerHTML = '<p>Enter your card details here.</p>';
+            }
+        }
+
+        function proceedWithPayment() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            if (paymentMethod === 'upi') {
+                window.location.href = 'https://www.phonepe.com';
+            } else {
+                alert('Payment processed successfully!');
+            }
+            closePaymentModal();
+        }
+    </script>
+</body>
+
+</html>

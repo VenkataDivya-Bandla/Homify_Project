@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <div class="tabs">
+            <button onclick="executeAdminManagement()">Admin Management</button>
+            <button onclick="openTab('.')">User Management</button>
+            <button onclick="openTab('./service')">Service Provider</button>
+        </div>
+        <div id="user" class="tabContent">
+            <!-- User management content will be loaded here -->
+        </div>
+        <div id="service" class="tabContent">
+            <!-- Service management content will be loaded here -->
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
